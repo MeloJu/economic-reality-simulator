@@ -1,0 +1,19 @@
+country,city,currency,usd_rate,eur_rate,local_min_wage,avg_rent_single,avg_rent_family,basic_food_cost,transport_cost,utilities_cost,healthcare_cost,effective_tax_rate
+Brazil,São Paulo,BRL,5.0,5.4,1412,1800,3200,800,250,300,200,0.27
+Brazil,Rio de Janeiro,BRL,5.0,5.4,1412,1600,3000,750,230,350,180,0.27
+Brazil,Belo Horizonte,BRL,5.0,5.4,1412,1200,2200,650,200,280,150,0.27
+Brazil,Salvador,BRL,5.0,5.4,1412,1000,1800,600,180,250,120,0.27
+Brazil,Curitiba,BRL,5.0,5.4,1412,1300,2400,680,210,320,160,0.27
+USA,New York,USD,1.0,1.08,2900,2800,4200,600,150,200,450,0.35
+USA,San Francisco,USD,1.0,1.08,3200,3200,5000,650,180,180,480,0.37
+USA,Austin,USD,1.0,1.08,2500,1800,3000,550,200,160,420,0.32
+USA,Miami,USD,1.0,1.08,2600,2200,3600,580,180,190,440,0.3
+Germany,Berlin,EUR,0.93,1.0,2100,1200,2200,400,80,250,300,0.4
+Germany,Munich,EUR,0.93,1.0,2100,1600,2800,450,90,270,320,0.42
+Germany,Frankfurt,EUR,0.93,1.0,2100,1400,2500,420,85,260,310,0.41
+France,Paris,EUR,0.93,1.0,1800,1400,2600,450,75,180,250,0.43
+France,Lyon,EUR,0.93,1.0,1800,900,1800,400,65,160,230,0.43
+France,Marseille,EUR,0.93,1.0,1800,850,1650,380,60,150,220,0.43
+Portugal,Lisbon,EUR,0.93,1.0,820,900,1600,300,50,120,150,0.35
+Portugal,Porto,EUR,0.93,1.0,820,700,1300,280,45,110,140,0.35
+Portugal,Faro,EUR,0.93,1.0,820,650,1200,270,40,100,130,0.35

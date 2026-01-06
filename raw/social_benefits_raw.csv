@@ -1,0 +1,16 @@
+country,benefit_name,monthly_value,eligibility_income_threshold,per_dependent_bonus,max_dependents
+Brazil,Bolsa Família,600.0,218.0,150.0,5
+Brazil,BPC - Benefício Continuado,1412.0,353.0,0.0,0
+Brazil,Auxílio Gás,102.0,218.0,0.0,0
+USA,SNAP (Food Stamps),250.0,2500.0,150.0,8
+USA,EITC (Tax Credit),450.0,4500.0,200.0,3
+USA,Medicaid,400.0,3000.0,0.0,0
+Germany,Bürgergeld,563.0,1500.0,350.0,6
+Germany,Kindergeld,250.0,5000.0,250.0,10
+Germany,Wohngeld,350.0,2000.0,100.0,5
+France,RSA,607.0,1200.0,180.0,6
+France,Allocations Familiales,140.0,4500.0,140.0,8
+France,APL (Housing),300.0,1800.0,50.0,5
+Portugal,RSI,230.0,600.0,115.0,6
+Portugal,Abono de Família,50.0,2000.0,50.0,8
+Portugal,Apoio ao Arrendamento,200.0,1200.0,30.0,4
