@@ -1,0 +1,73 @@
+profile_id,description,country,city,dependents,net_salary_local,net_salary_usd,total_household_cost_local,total_household_cost_usd,renda_disponivel_real_usd,per_capita_rdr
+F1,"Casal sem filhos, classe média",Brazil,São Paulo,0,6000,1200.0,3350.0,670.0,530.0,530.0
+F1,"Casal sem filhos, classe média",Brazil,Rio de Janeiro,0,6000,1200.0,3110.0,622.0,578.0,578.0
+F1,"Casal sem filhos, classe média",Brazil,Belo Horizonte,0,6000,1200.0,2480.0,496.0,704.0,704.0
+F1,"Casal sem filhos, classe média",Brazil,Salvador,0,6000,1200.0,2150.0,430.0,770.0,770.0
+F1,"Casal sem filhos, classe média",Brazil,Curitiba,0,6000,1200.0,2670.0,534.0,666.0,666.0
+F1,"Casal sem filhos, classe média",USA,New York,0,6000,6000.0,4200.0,4200.0,1800.0,1800.0
+F1,"Casal sem filhos, classe média",USA,San Francisco,0,6000,6000.0,4690.0,4690.0,1310.0,1310.0
+F1,"Casal sem filhos, classe média",USA,Austin,0,6000,6000.0,3130.0,3130.0,2870.0,2870.0
+F1,"Casal sem filhos, classe média",USA,Miami,0,6000,6000.0,3590.0,3590.0,2410.0,2410.0
+F1,"Casal sem filhos, classe média",Germany,Berlin,0,6000,6451.612903225806,2230.0,2397.849462365591,4053.763440860215,4053.763440860215
+F1,"Casal sem filhos, classe média",Germany,Munich,0,6000,6451.612903225806,2730.0,2935.483870967742,3516.129032258064,3516.129032258064
+F1,"Casal sem filhos, classe média",Germany,Frankfurt,0,6000,6451.612903225806,2475.0,2661.290322580645,3790.322580645161,3790.322580645161
+F1,"Casal sem filhos, classe média",France,Paris,0,6000,6451.612903225806,2355.0,2532.258064516129,3919.354838709677,3919.354838709677
+F1,"Casal sem filhos, classe média",France,Lyon,0,6000,6451.612903225806,1755.0,1887.0967741935483,4564.516129032258,4564.516129032258
+F1,"Casal sem filhos, classe média",France,Marseille,0,6000,6451.612903225806,1660.0,1784.9462365591396,4666.666666666666,4666.666666666666
+F1,"Casal sem filhos, classe média",Portugal,Lisbon,0,6000,6451.612903225806,1520.0,1634.4086021505375,4817.204301075269,4817.204301075269
+F1,"Casal sem filhos, classe média",Portugal,Porto,0,6000,6451.612903225806,1275.0,1370.967741935484,5080.645161290322,5080.645161290322
+F1,"Casal sem filhos, classe média",Portugal,Faro,0,6000,6451.612903225806,1190.0,1279.5698924731182,5172.043010752688,5172.043010752688
+F2,"Família com 2 filhos, classe média",Brazil,São Paulo,2,8000,1600.0,6050.0,1210.0,390.0,130.0
+F2,"Família com 2 filhos, classe média",Brazil,Rio de Janeiro,2,8000,1600.0,5764.0,1152.8,447.20000000000005,149.0666666666667
+F2,"Família com 2 filhos, classe média",Brazil,Belo Horizonte,2,8000,1600.0,4548.0,909.6,690.4,230.13333333333333
+F2,"Família com 2 filhos, classe média",Brazil,Salvador,2,8000,1600.0,3916.0,783.2,816.8,272.26666666666665
+F2,"Família com 2 filhos, classe média",Brazil,Curitiba,2,8000,1600.0,4906.0,981.2,618.8,206.26666666666665
+F2,"Família com 2 filhos, classe média",USA,New York,2,8000,8000.0,6800.0,6800.0,1200.0,400.0
+F2,"Família com 2 filhos, classe média",USA,San Francisco,2,8000,8000.0,7762.0,7762.0,238.0,79.33333333333333
+F2,"Família com 2 filhos, classe média",USA,Austin,2,8000,8000.0,5422.0,5422.0,2578.0,859.3333333333334
+F2,"Família com 2 filhos, classe média",USA,Miami,2,8000,8000.0,6152.0,6152.0,1848.0,616.0
+F2,"Família com 2 filhos, classe média",Germany,Berlin,2,8000,8602.150537634408,4100.0,4408.602150537634,4193.548387096775,1397.8494623655915
+F2,"Família com 2 filhos, classe média",Germany,Munich,2,8000,8602.150537634408,4888.0,5255.913978494624,3346.2365591397847,1115.4121863799282
+F2,"Família com 2 filhos, classe média",Germany,Frankfurt,2,8000,8602.150537634408,4483.0,4820.430107526881,3781.720430107527,1260.573476702509
+F2,"Família com 2 filhos, classe média",France,Paris,2,8000,8602.150537634408,4403.0,4734.408602150537,3867.741935483871,1289.247311827957
+F2,"Família com 2 filhos, classe média",France,Lyon,2,8000,8602.150537634408,3415.0,3672.043010752688,4930.10752688172,1643.36917562724
+F2,"Família com 2 filhos, classe média",France,Marseille,2,8000,8602.150537634408,3182.0,3421.505376344086,5180.645161290322,1726.8817204301074
+F2,"Família com 2 filhos, classe média",Portugal,Lisbon,2,8000,8602.150537634408,2772.0,2980.6451612903224,5621.5053763440865,1873.8351254480287
+F2,"Família com 2 filhos, classe média",Portugal,Porto,2,8000,8602.150537634408,2389.0,2568.817204301075,6033.333333333334,2011.1111111111113
+F2,"Família com 2 filhos, classe média",Portugal,Faro,2,8000,8602.150537634408,2228.0,2395.6989247311826,6206.451612903225,2068.817204301075
+F3,"Família com 3 filhos, classe média-baixa",Brazil,São Paulo,3,5000,1000.0,6700.0,1340.0,-340.0,-85.0
+F3,"Família com 3 filhos, classe média-baixa",Brazil,Rio de Janeiro,3,5000,1000.0,6391.0,1278.2,-278.20000000000005,-69.55000000000001
+F3,"Família com 3 filhos, classe média-baixa",Brazil,Belo Horizonte,3,5000,1000.0,5082.0,1016.4,-16.399999999999977,-4.099999999999994
+F3,"Família com 3 filhos, classe média-baixa",Brazil,Salvador,3,5000,1000.0,4399.0,879.8,120.20000000000005,30.05000000000001
+F3,"Família com 3 filhos, classe média-baixa",Brazil,Curitiba,3,5000,1000.0,5474.0,1094.8,-94.79999999999995,-23.69999999999999
+F3,"Família com 3 filhos, classe média-baixa",USA,New York,3,5000,5000.0,7400.0,7400.0,-2400.0,-600.0
+F3,"Família com 3 filhos, classe média-baixa",USA,San Francisco,3,5000,5000.0,8398.0,8398.0,-3398.0,-849.5
+F3,"Família com 3 filhos, classe média-baixa",USA,Austin,3,5000,5000.0,5968.0,5968.0,-968.0,-242.0
+F3,"Família com 3 filhos, classe média-baixa",USA,Miami,3,5000,5000.0,6733.0,6733.0,-1733.0,-433.25
+F3,"Família com 3 filhos, classe média-baixa",Germany,Berlin,3,5000,5376.344086021505,4535.0,4876.344086021505,500.0,125.0
+F3,"Família com 3 filhos, classe média-baixa",Germany,Munich,3,5000,5376.344086021505,5367.0,5770.967741935484,-394.62365591397884,-98.65591397849471
+F3,"Família com 3 filhos, classe média-baixa",Germany,Frankfurt,3,5000,5376.344086021505,4937.0,5308.602150537634,67.7419354838712,16.9354838709678
+F3,"Família com 3 filhos, classe média-baixa",France,Paris,3,5000,5376.344086021505,4827.0,5190.322580645161,186.02150537634407,46.50537634408602
+F3,"Família com 3 filhos, classe média-baixa",France,Lyon,3,5000,5376.344086021505,3795.0,4080.6451612903224,1295.6989247311826,323.92473118279565
+F3,"Família com 3 filhos, classe média-baixa",France,Marseille,3,5000,5376.344086021505,3543.0,3809.6774193548385,1566.6666666666665,391.66666666666663
+F3,"Família com 3 filhos, classe média-baixa",Portugal,Lisbon,3,5000,5376.344086021505,3048.0,3277.4193548387093,2098.9247311827958,524.7311827956989
+F3,"Família com 3 filhos, classe média-baixa",Portugal,Porto,3,5000,5376.344086021505,2646.0,2845.1612903225805,2531.1827956989246,632.7956989247311
+F3,"Família com 3 filhos, classe média-baixa",Portugal,Faro,3,5000,5376.344086021505,2472.0,2658.064516129032,2718.279569892473,679.5698924731182
+F4,"Profissional solteiro, classe média-alta",Brazil,São Paulo,0,10000,2000.0,3350.0,670.0,1330.0,1330.0
+F4,"Profissional solteiro, classe média-alta",Brazil,Rio de Janeiro,0,10000,2000.0,3110.0,622.0,1378.0,1378.0
+F4,"Profissional solteiro, classe média-alta",Brazil,Belo Horizonte,0,10000,2000.0,2480.0,496.0,1504.0,1504.0
+F4,"Profissional solteiro, classe média-alta",Brazil,Salvador,0,10000,2000.0,2150.0,430.0,1570.0,1570.0
+F4,"Profissional solteiro, classe média-alta",Brazil,Curitiba,0,10000,2000.0,2670.0,534.0,1466.0,1466.0
+F4,"Profissional solteiro, classe média-alta",USA,New York,0,10000,10000.0,4200.0,4200.0,5800.0,5800.0
+F4,"Profissional solteiro, classe média-alta",USA,San Francisco,0,10000,10000.0,4690.0,4690.0,5310.0,5310.0
+F4,"Profissional solteiro, classe média-alta",USA,Austin,0,10000,10000.0,3130.0,3130.0,6870.0,6870.0
+F4,"Profissional solteiro, classe média-alta",USA,Miami,0,10000,10000.0,3590.0,3590.0,6410.0,6410.0
+F4,"Profissional solteiro, classe média-alta",Germany,Berlin,0,10000,10752.68817204301,2230.0,2397.849462365591,8354.838709677419,8354.838709677419
+F4,"Profissional solteiro, classe média-alta",Germany,Munich,0,10000,10752.68817204301,2730.0,2935.483870967742,7817.204301075268,7817.204301075268
+F4,"Profissional solteiro, classe média-alta",Germany,Frankfurt,0,10000,10752.68817204301,2475.0,2661.290322580645,8091.397849462365,8091.397849462365
+F4,"Profissional solteiro, classe média-alta",France,Paris,0,10000,10752.68817204301,2355.0,2532.258064516129,8220.430107526881,8220.430107526881
+F4,"Profissional solteiro, classe média-alta",France,Lyon,0,10000,10752.68817204301,1755.0,1887.0967741935483,8865.591397849461,8865.591397849461
+F4,"Profissional solteiro, classe média-alta",France,Marseille,0,10000,10752.68817204301,1660.0,1784.9462365591396,8967.741935483871,8967.741935483871
+F4,"Profissional solteiro, classe média-alta",Portugal,Lisbon,0,10000,10752.68817204301,1520.0,1634.4086021505375,9118.279569892473,9118.279569892473
+F4,"Profissional solteiro, classe média-alta",Portugal,Porto,0,10000,10752.68817204301,1275.0,1370.967741935484,9381.720430107525,9381.720430107525
+F4,"Profissional solteiro, classe média-alta",Portugal,Faro,0,10000,10752.68817204301,1190.0,1279.5698924731182,9473.118279569891,9473.118279569891
