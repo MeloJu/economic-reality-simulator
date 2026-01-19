@@ -46,8 +46,9 @@ def load_silver_data():
     # Consolidar features relevantes
     base = people[['person_id', 'age', 'gender', 'city_br', 'education_level', 
                    'job_category', 'gross_salary_brl', 'dependents', 'receives_social_benefit',
-                   'renda_disponivel_real', 'economic_pressure_ratio', 'cost_per_capita',
-                   'social_support_ratio', 'renda_disponivel_real_zscore']].copy()
+                   'renda_disponivel_real', 'economic_pressure_ratio', 'epr_clean',
+                   'cost_per_capita', 'social_support_ratio', 
+                   'renda_disponivel_real_zscore']].copy()
     
     # Adicionar features culturais
     base = base.merge(
@@ -90,7 +91,15 @@ def calculate_qles(df):
     
     # Componentes intermediários (para explicabilidade)
     qles_df['component_rdr'] = df['renda_disponivel_real_zscore'] * QLES_WEIGHTS['rdr_zscore']
-    qles_df['component_epr'] = (1 - df['economic_pressure_ratio']) * QLES_WEIGHTS['epr_inverse']
+    
+    # Usar epr_clean (valores válidos) para o cálculo, preenchendo NaN com EPR original quando válido
+    epr_for_qles = df['epr_clean'].fillna(
+        df['economic_pressure_ratio'].where(
+            (df['economic_pressure_ratio'] >= 0) & (df['economic_pressure_ratio'] <= 1),
+            1.0  # Casos extremos assumem pressão máxima
+        )
+    )
+    qles_df['component_epr'] = (1 - epr_for_qles) * QLES_WEIGHTS['epr_inverse']
     qles_df['component_iac'] = df['iac_raw_zscore'] * QLES_WEIGHTS['iac_zscore']
     qles_df['component_ioe'] = df['ioe_raw_zscore'] * QLES_WEIGHTS['ioe_zscore']
     qles_df['component_social'] = (1 - df['social_support_ratio']) * QLES_WEIGHTS['social_support_inverse']
@@ -142,15 +151,19 @@ def create_clusters(df):
     """
     print("🔬 Executando clusterização socioeconômica...")
     
-    # Features para clustering
-    features = ['renda_disponivel_real_zscore', 'economic_pressure_ratio', 
+    # Features para clustering - USAR EPR_CLEAN em vez de EPR
+    features = ['renda_disponivel_real_zscore', 'epr_clean', 
                 'iac_raw_zscore', 'ioe_raw_zscore', 'cost_per_capita']
     
     X = df[features].copy()
     
     # Tratar valores infinitos e NaN
     X = X.replace([np.inf, -np.inf], np.nan)
-    X = X.fillna(X.median())
+    
+    # Para EPR_CLEAN que é NaN, usar mediana do EPR válido
+    for col in X.columns:
+        if X[col].isna().any():
+            X[col] = X[col].fillna(X[col].median())
     
     # Padronizar features
     scaler = StandardScaler()
@@ -181,17 +194,26 @@ def create_clusters(df):
     kmeans = KMeans(n_clusters=best_k, random_state=42, n_init=10, max_iter=100)
     df['cluster_id'] = kmeans.fit_predict(X_scaled)
     
-    # Calcular métricas médias por cluster
-    cluster_stats = df.groupby('cluster_id').agg({
-        'renda_disponivel_real': 'mean',
-        'economic_pressure_ratio': 'mean',
-        'iac_raw_zscore': 'mean',
-        'ioe_raw_zscore': 'mean',
-        'cost_per_capita': 'mean',
-        'gross_salary_brl': 'mean',
-        'person_id': 'count'
-    }).round(2)
-    cluster_stats.rename(columns={'person_id': 'count'}, inplace=True)
+    # Calcular métricas médias por cluster - AGREGAÇÃO EXPLÍCITA CORRETA
+    cluster_stats = df.groupby('cluster_id').agg(
+        avg_rdr=('renda_disponivel_real', 'mean'),
+        avg_epr=('epr_clean', 'mean'),  # Usar EPR_CLEAN
+        avg_iac=('iac_raw_zscore', 'mean'),
+        avg_ioe=('ioe_raw_zscore', 'mean'),
+        avg_cost_per_capita=('cost_per_capita', 'mean'),
+        avg_gross_salary=('gross_salary_brl', 'mean'),
+        count=('person_id', 'count')
+    ).round(2)
+    
+    # Renomear para compatibilidade
+    cluster_stats.rename(columns={
+        'avg_rdr': 'renda_disponivel_real',
+        'avg_epr': 'economic_pressure_ratio',
+        'avg_iac': 'iac_raw_zscore',
+        'avg_ioe': 'ioe_raw_zscore',
+        'avg_cost_per_capita': 'cost_per_capita',
+        'avg_gross_salary': 'gross_salary_brl'
+    }, inplace=True)
     
     # Atribuir labels interpretativos
     cluster_labels = assign_cluster_labels(cluster_stats, best_k)
@@ -201,12 +223,12 @@ def create_clusters(df):
     cluster_df['cluster_label'] = cluster_df['cluster_id'].map(lambda x: cluster_labels[x]['label'])
     cluster_df['cluster_description'] = cluster_df['cluster_id'].map(lambda x: cluster_labels[x]['description'])
     
-    # Adicionar estatísticas do cluster
-    for col in ['avg_rdr', 'avg_epr', 'avg_iac', 'avg_ioe', 'avg_cost_per_capita']:
-        cluster_df[col] = cluster_df['cluster_id'].map(
-            cluster_stats[col.replace('avg_', '')] if col.replace('avg_', '') in cluster_stats.columns 
-            else cluster_stats['renda_disponivel_real']
-        )
+    # Adicionar estatísticas do cluster - MAPEAMENTO CORRETO
+    cluster_df['avg_rdr'] = cluster_df['cluster_id'].map(cluster_stats['renda_disponivel_real'])
+    cluster_df['avg_epr'] = cluster_df['cluster_id'].map(cluster_stats['economic_pressure_ratio'])
+    cluster_df['avg_iac'] = cluster_df['cluster_id'].map(cluster_stats['iac_raw_zscore'])
+    cluster_df['avg_ioe'] = cluster_df['cluster_id'].map(cluster_stats['ioe_raw_zscore'])
+    cluster_df['avg_cost_per_capita'] = cluster_df['cluster_id'].map(cluster_stats['cost_per_capita'])
     
     print(f"\n📊 Distribuição dos clusters:")
     print(cluster_df['cluster_label'].value_counts())
@@ -304,9 +326,12 @@ def create_vulnerability_flags(df):
     
     vuln_df = df[['person_id']].copy()
     
+    # Usar epr_clean quando disponível, fallback para EPR original
+    epr_to_use = df['epr_clean'].fillna(df['economic_pressure_ratio'])
+    
     # Flag 1: Alta vulnerabilidade (alta pressão E renda disponível negativa/baixa)
     vuln_df['high_vulnerability'] = (
-        (df['economic_pressure_ratio'] > 0.8) & 
+        (epr_to_use > 0.8) & 
         (df['renda_disponivel_real'] < 500)
     )
     
@@ -314,7 +339,7 @@ def create_vulnerability_flags(df):
     vuln_df['high_dependency'] = (df['social_support_ratio'] > 0.3)
     
     # Flag 3: Pressão extrema
-    vuln_df['extreme_pressure'] = (df['economic_pressure_ratio'] > 0.9)
+    vuln_df['extreme_pressure'] = (epr_to_use > 0.9)
     
     # Flag 4: Renda negativa (não consegue cobrir custos básicos)
     vuln_df['negative_income'] = (df['renda_disponivel_real'] < 0)
@@ -352,7 +377,7 @@ def simulate_policy_scenarios(df, qles_df):
     scenarios = []
     
     # Cenário base
-    base = df[['person_id', 'renda_disponivel_real', 'economic_pressure_ratio', 
+    base = df[['person_id', 'renda_disponivel_real', 'epr_clean',
                'cost_per_capita', 'renda_disponivel_real_zscore']].copy()
     base = base.merge(qles_df[['person_id', 'QLES']], on='person_id', how='left')
     base.rename(columns={'QLES': 'QLES_base'}, inplace=True)
@@ -362,8 +387,11 @@ def simulate_policy_scenarios(df, qles_df):
     scenario1 = base.copy()
     scenario1['housing_cost_increase'] = 0.20 * df['cost_per_capita'] * 0.35  # Assumindo habitação = 35% do custo
     scenario1['rdr_after'] = scenario1['renda_disponivel_real'] - scenario1['housing_cost_increase']
+    
+    # Usar epr_clean preenchido
+    epr_base = base['epr_clean'].fillna(0.9)
     scenario1['epr_after'] = np.minimum(
-        (df['cost_per_capita'] + scenario1['housing_cost_increase']) / df['gross_salary_brl'],
+        epr_base * 1.20,  # Aumenta proporcionalmente
         1.0
     )
     

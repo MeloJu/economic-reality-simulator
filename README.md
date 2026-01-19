@@ -2,15 +2,19 @@
 
 **Análise de Dados Socioeconômicos com Feature Engineering**
 
-[![Status](https://img.shields.io/badge/Status-Camada%20SILVER%20Completa-success)]()
+[![Status](https://img.shields.io/badge/Status-GOLD%20Layer%20Completa-success)]()
 [![Python](https://img.shields.io/badge/Python-3.14+-blue)]()
 [![Data](https://img.shields.io/badge/Registros-10%2C000-orange)]()
+[![Clusters](https://img.shields.io/badge/Clusters-6-purple)]()
+[![Power BI](https://img.shields.io/badge/Power%20BI-Ready-yellow)]()
 
 ---
 
 ## 📋 VISÃO GERAL
 
 Este projeto implementa um **pipeline completo de engenharia de dados** para análise socioeconômica, seguindo a arquitetura **Medallion** (Bronze → Silver → Gold).
+
+**Novo:** 🏆 **Camada GOLD** completa com scores consolidados, clusterização interpretável e simulação de cenários prontos para Power BI!
 
 ### Arquitetura
 
@@ -50,13 +54,27 @@ project-root/
 │   ├── cross_country_family_comparison.csv
 │   └── README.md
 │
+├── gold/                             # 🏆 Camada GOLD (Business)
+│   ├── quality_of_life_score.csv     # Score QLES consolidado
+│   ├── socioeconomic_clusters.csv    # 6 clusters interpretativos
+│   ├── country_rankings_by_profile.csv # Rankings contextuais
+│   ├── vulnerability_and_risk.csv    # Flags de risco
+│   ├── policy_scenarios.csv          # Simulações de política
+│   └── README.md
+│
+│   └── README.md
+│
 ├── src/                              # 🐍 Scripts Python
 │   ├── generate_raw_data.py          # Gera camada RAW
-│   ├── generate_enriched_data.py     # Gera camada SILVER ⭐
+│   ├── generate_enriched_data.py     # Gera camada SILVER
+│   ├── generate_gold_data.py         # Gera camada GOLD ⭐
 │   ├── validate_enriched_data.py     # Valida SILVER
-│   └── exemplos_uso_silver.py        # Exemplos de análise
+│   ├── exemplos_uso_silver.py        # Exemplos SILVER
+│   └── exemplos_uso_gold.py          # Exemplos GOLD ⭐
 │
-├── SILVER_SUMMARY.md                 # 📊 Resumo executivo
+├── SILVER_SUMMARY.md                 # 📊 Resumo SILVER
+├── GOLD_QUICK_REFERENCE.md           # 🏆 Referência GOLD ⭐
+├── QUICK_REFERENCE.md                # 📋 Referência rápida
 └── README.md                         # 📖 Este arquivo
 ```
 
@@ -78,17 +96,20 @@ python -m venv .venv
 # source .venv/bin/activate  # Linux/Mac
 
 # Instale dependências
-pip install pandas numpy
+pip install pandas numpy scikit-learn
 ```
 
-### 2️⃣ Gerar Dados
+### 2️⃣ Gerar Pipeline Completo
 
 ```bash
 # Camada RAW (se ainda não existir)
 python src/generate_raw_data.py
 
-# Camada SILVER ⭐
+# Camada SILVER
 python src/generate_enriched_data.py
+
+# Camada GOLD ⭐
+python src/generate_gold_data.py
 ```
 
 ### 3️⃣ Validar
@@ -100,14 +121,27 @@ python src/validate_enriched_data.py
 ### 4️⃣ Explorar
 
 ```bash
+# Análises SILVER
 python src/exemplos_uso_silver.py
+
+# Análises GOLD ⭐
+python src/exemplos_uso_gold.py
 ```
 
 ---
 
-## 🔢 MÉTRICAS IMPLEMENTADAS (SILVER)
+## 📊 CAMADAS DO PIPELINE
 
-### 💰 **Econômicas**
+### 🥉 **RAW (Bronze)** — Dados Brutos
+- 10.000 indivíduos sintéticos
+- 18 cidades/países
+- Custos culturais e de oportunidades
+- Contexto econômico
+- **Objetivo**: Dados realistas sem transformações
+
+### 🥈 **SILVER (Enriched)** — Feature Engineering
+
+**Métricas Econômicas:**
 - ✅ **Total Household Cost** — custo doméstico total
 - ✅ **Renda Disponível Real (RDR)** — renda após custos essenciais
 - ✅ **Economic Pressure Ratio (EPR)** — pressão de custos sobre renda
@@ -144,12 +178,14 @@ python src/exemplos_uso_silver.py
 
 ## 📊 PRINCIPAIS RESULTADOS
 
-### Situação Econômica Brasileira
+### 🥈 SILVER — Feature Engineering
+
+**Situação Econômica Brasileira:**
 - **RDR médio**: R$ 1.557,31
 - **58,98%** da população com **déficit** (custo > renda)
 - **EPR mediano**: 1,28 (custos = 128% da renda)
 
-### Composição de Custos
+**Composição de Custos:**
 | Item | % do Total |
 |------|------------|
 | Moradia | 41,27% |
@@ -170,36 +206,74 @@ python src/exemplos_uso_silver.py
 - Ganho médio: **+$8.143 USD** (profissional solteiro)
 - Aumento de poder de compra: **+612%**
 
+### 🏆 GOLD — Decisão e Insights
+
+**Qualidade de Vida Econômica:**
+- **QLES médio**: 18.09/100 (crise generalizada)
+- **87% da população** em Very Low ou Low
+- **Componentes críticos**: RDR (35%) e EPR (25%)
+
+**Segmentação Socioeconômica:**
+- **71% em vulnerabilidade** (Crítica + Sobrevivência)
+- **24% classe média** com mobilidade limitada
+- **Apenas 3.6%** com mobilidade ascendente ou alta renda
+
+**Vulnerabilidade e Risco:**
+- **65% em Risco Alto** — população crítica
+- **63% com pressão extrema** (EPR > 0.9)
+- **59% com renda negativa** (não cobrem custos básicos)
+
+**Impacto de Políticas:**
+- **Aumento de aluguel +20%**: impacto -5% no QLES
+- **Corte de benefícios -15%**: impacto -10% no QLES
+- **Cenários pioram situação crítica** — necessidade de expansão
+
 ---
 
 ## 📚 DOCUMENTAÇÃO
 
 ### Principais Documentos
-- 📖 **[SILVER_SUMMARY.md](SILVER_SUMMARY.md)** — Resumo executivo completo
-- 📁 **[enriched/README.md](enriched/README.md)** — Documentação detalhada da camada SILVER
-- 📁 **[raw/README.md](raw/README.md)** — Documentação da camada RAW
+- 🏆 **[GOLD_QUICK_REFERENCE.md](GOLD_QUICK_REFERENCE.md)** — Referência rápida GOLD ⭐
+- 📖 **[SILVER_SUMMARY.md](SILVER_SUMMARY.md)** — Resumo executivo SILVER
+- 📁 **[gold/README.md](gold/README.md)** — Documentação detalhada GOLD ⭐
+- 📁 **[enriched/README.md](enriched/README.md)** — Documentação detalhada SILVER
+- 📁 **[raw/README.md](raw/README.md)** — Documentação RAW
 
 ### Scripts
-- 🐍 **generate_enriched_data.py** — Pipeline principal (350+ linhas)
+- 🏆 **generate_gold_data.py** — Pipeline GOLD (470+ linhas) ⭐
+- 🐍 **generate_enriched_data.py** — Pipeline SILVER (350+ linhas)
 - 🔍 **validate_enriched_data.py** — Validação e sanity checks
-- 📊 **exemplos_uso_silver.py** — 6 exemplos práticos de análise
+- 📊 **exemplos_uso_gold.py** — 6 exemplos práticos GOLD ⭐
+- 📊 **exemplos_uso_silver.py** — 6 exemplos práticos SILVER
 
 ---
 
 ## 🎯 PRÓXIMOS PASSOS
 
-### 1️⃣ **EDA Avançada**
+### 1️⃣ **Power BI Dashboard** ⭐
+- [ ] Conectar datasets GOLD
+- [ ] Dashboard executivo com KPIs
+- [ ] Drill-down por cluster e cidade
+- [ ] Análise comparativa de cenários
+
+### 2️⃣ **EDA Avançada**
 - [ ] Distribuições por região/cidade
 - [ ] Análise de outliers
 - [ ] Visualizações (matplotlib/seaborn)
 - [ ] Análise temporal (simulada)
 
-### 2️⃣ **Camada GOLD**
-- [ ] Score composto de vulnerabilidade
-- [ ] Sistema de elegibilidade para benefícios
-- [ ] Ranking de oportunidades
-- [ ] Recomendações de políticas públicas
-- [ ] Segmentação de perfis
+### 3️⃣ **Melhorias GOLD** ⭐
+- [x] Score consolidado (QLES) ✅
+- [x] Clusterização interpretável ✅
+- [x] Rankings contextuais ✅
+- [x] Análise de vulnerabilidade ✅
+- [x] Simulação de cenários ✅
+- [ ] Modelo preditivo de vulnerabilidade
+- [ ] Análise temporal (dados históricos)
+- [ ] Benchmark internacional expandido
+- [ ] Otimização de políticas (what-if analysis)
+
+### 4️⃣ **Machine Learning**
 
 ### 3️⃣ **Features Avançadas (Bônus)**
 - [ ] **Shock Impact Analysis**: Sensibilidade a choques econômicos
@@ -271,8 +345,49 @@ python src/exemplos_uso_silver.py
 - **Python 3.14+**
 - **pandas** — manipulação de dados
 - **numpy** — cálculos numéricos
+- **scikit-learn** — clusterização e machine learning ⭐
 - **pathlib** — manipulação de paths
 - **CSV** — formato de armazenamento
+
+---
+
+## 📚 DOCUMENTAÇÃO COMPLETA
+
+### 📊 Por Camada
+
+| Documento | Descrição | Linhas |
+|-----------|-----------|--------|
+| [raw/README.md](raw/README.md) | Documentação camada RAW | 150+ |
+| [enriched/README.md](enriched/README.md) | Documentação camada SILVER | 400+ |
+| [gold/README.md](gold/README.md) | Documentação camada GOLD ⭐ | 500+ |
+
+### 📋 Sumários Executivos
+
+| Documento | Foco | Público |
+|-----------|------|---------|
+| [SILVER_SUMMARY.md](SILVER_SUMMARY.md) | Features & métricas | Analistas de dados |
+| [GOLD_SUMMARY.md](GOLD_SUMMARY.md) | Decisões & insights ⭐ | Executivos, gestores |
+
+### 🚀 Guias Práticos
+
+| Documento | Objetivo | Uso |
+|-----------|----------|-----|
+| [QUICK_REFERENCE.md](QUICK_REFERENCE.md) | Referência rápida SILVER | Consulta diária |
+| [GOLD_QUICK_REFERENCE.md](GOLD_QUICK_REFERENCE.md) | Referência rápida GOLD ⭐ | Consulta diária |
+| [POWER_BI_INTEGRATION.md](POWER_BI_INTEGRATION.md) | Integração Power BI ⭐ | BI Developers |
+
+### 🐍 Código
+
+| Script | Função | Linhas |
+|--------|--------|--------|
+| [generate_raw_data.py](src/generate_raw_data.py) | Gera camada RAW | 200+ |
+| [generate_enriched_data.py](src/generate_enriched_data.py) | Gera camada SILVER | 350+ |
+| [generate_gold_data.py](src/generate_gold_data.py) | Gera camada GOLD ⭐ | 470+ |
+| [validate_enriched_data.py](src/validate_enriched_data.py) | Validação SILVER | 100+ |
+| [exemplos_uso_silver.py](src/exemplos_uso_silver.py) | Exemplos SILVER | 300+ |
+| [exemplos_uso_gold.py](src/exemplos_uso_gold.py) | Exemplos GOLD ⭐ | 400+ |
+
+**Total**: ~2.770+ linhas de código Python documentado
 
 ---
 

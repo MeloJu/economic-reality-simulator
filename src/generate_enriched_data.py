@@ -8,8 +8,8 @@ from pathlib import Path
 # CONFIGURAÇÕES
 # ============================================================================
 
-RAW_DIR = Path("raw")
-ENRICHED_DIR = Path("enriched")
+RAW_DIR = Path("../raw")
+ENRICHED_DIR = Path("../enriched")
 ENRICHED_DIR.mkdir(exist_ok=True)
 
 # Fator de ajuste por dependente (literatura sugere 30-50%)
@@ -157,6 +157,15 @@ def calculate_economic_metrics(df):
     # Economic Pressure Ratio (EPR)
     df['economic_pressure_ratio'] = df['total_household_cost'] / df['net_salary_brl']
     
+    # EPR Clean - versão limpa para análises (remove inf e valores inválidos)
+    # Mantém apenas valores economicamente interpretáveis (0 < EPR < 2)
+    df['epr_clean'] = df['economic_pressure_ratio'].where(
+        (df['economic_pressure_ratio'] > 0) &
+        (df['economic_pressure_ratio'] < 2.0) &
+        (np.isfinite(df['economic_pressure_ratio'])),
+        np.nan
+    )
+    
     # Custo por Dependente (CPD)
     df['cost_per_capita'] = df['total_household_cost'] / (df['dependents'] + 1)
     
@@ -286,6 +295,7 @@ def generate_people_enriched(df):
         # Métricas principais
         'renda_disponivel_real',
         'economic_pressure_ratio',
+        'epr_clean',  # EPR limpo para análises
         'cost_per_capita',
         'adjusted_min_wage',
         'dist_salario_minimo_ajustado',
@@ -315,7 +325,8 @@ def generate_household_costs_enriched(df):
         'dependent_adjustment',
         'total_household_cost',
         'cost_per_capita',
-        'economic_pressure_ratio'
+        'economic_pressure_ratio',
+        'epr_clean'  # EPR limpo para análises
     ]
     
     return df[[col for col in cols if col in df.columns]]
