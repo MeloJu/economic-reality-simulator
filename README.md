@@ -62,7 +62,6 @@ project-root/
 │   ├── policy_scenarios.csv          # Simulações de política
 │   └── README.md
 │
-│   └── README.md
 │
 ├── src/                              # 🐍 Scripts Python
 │   ├── generate_raw_data.py          # Gera camada RAW
@@ -97,6 +96,12 @@ python -m venv .venv
 
 # Instale dependências
 pip install pandas numpy scikit-learn
+```
+
+Nota (Windows): se aparecer erro de encoding ao imprimir emojis, execute antes do script:
+
+```powershell
+$env:PYTHONIOENCODING = 'utf-8'
 ```
 
 ### 2️⃣ Gerar Pipeline Completo
@@ -393,10 +398,10 @@ python src/exemplos_uso_gold.py
 
 ## 📈 ESTATÍSTICAS DO PROJETO
 
-- **Linhas de código**: ~1.200
-- **Datasets gerados**: 11 (5 RAW + 6 SILVER)
-- **Registros processados**: 10.000+
-- **Métricas calculadas**: 14 principais
+- **Linhas de código**: ~2.770+
+- **Datasets gerados**: 17 (5 RAW + 6 SILVER + 6 GOLD)
+- **Registros processados**: 40.000+ (inclui cenários)
+- **Métricas calculadas**: 20+ principais
 - **Países cobertos**: 5 (Brasil, EUA, Alemanha, França, Portugal)
 - **Cidades**: 18
 
@@ -448,10 +453,10 @@ Para dúvidas sobre a implementação:
 
 - ✅ **RAW Layer** — Completo
 - ✅ **SILVER Layer** — Completo e validado
-- ⏳ **GOLD Layer** — Planejado
-- ⏳ **Dashboards** — Planejado
+- ✅ **GOLD Layer** — Completo
+- 🔄 **Power BI** — Guia pronto (ver POWER_BI_INTEGRATION.md)
 
 ---
 
-**Última atualização**: 2026-01-06  
-**Versão**: 1.0 (SILVER completo)
+**Última atualização**: 2026-01-19  
+**Versão**: 1.2.0 (GOLD completo)
