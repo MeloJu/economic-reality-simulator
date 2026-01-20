@@ -414,7 +414,7 @@ Se você usar este projeto, considere citar:
 ```bibtex
 @software{pipeline_socioeconomico,
   title = {Pipeline Socioeconômico RAW-SILVER-GOLD},
-  author = {Seu Nome},
+  author = {Juan Melo},
   year = {2026},
   description = {Análise de dados socioeconômicos com feature engineering}
 }
