@@ -74,6 +74,7 @@ project-root/
 ├── SILVER_SUMMARY.md                 # 📊 Resumo SILVER
 ├── GOLD_QUICK_REFERENCE.md           # 🏆 Referência GOLD ⭐
 ├── QUICK_REFERENCE.md                # 📋 Referência rápida
+├── StoryTelling.pbix                 # 📖 Analise dos dados e StoryTelling ⭐
 └── README.md                         # 📖 Este arquivo
 ```
 
